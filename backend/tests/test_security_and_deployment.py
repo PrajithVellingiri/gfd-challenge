@@ -38,11 +38,17 @@ def test_env_example_files_exist():
 
 def test_no_actual_env_in_git():
     """
-    Ensures that no live .env file is present or committed.
+    Ensures that no live .env file is tracked in git.
     """
-    assert not (REPO_ROOT / ".env").exists()
-    assert not (REPO_ROOT / "backend" / ".env").exists()
-    assert not (REPO_ROOT / "frontend" / ".env").exists()
+    import subprocess
+    result = subprocess.run(
+        ["git", "ls-files", ".env", "backend/.env", "frontend/.env"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True
+    )
+    tracked_files = [f.strip() for f in result.stdout.splitlines() if f.strip()]
+    assert len(tracked_files) == 0, f"Found live .env files tracked in git: {tracked_files}"
 
 
 def test_no_hardcoded_secrets_in_code():

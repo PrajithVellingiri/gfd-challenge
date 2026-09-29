@@ -22,31 +22,24 @@ def verify_admin_authorization(
     3. The caller presents an authenticated admin role (X-User-Role: admin).
     4. In non-production environments when no ADMIN_API_KEY has been configured.
     """
-    valid_keys = [k for k in [settings.ADMIN_API_KEY, settings.SUPABASE_SERVICE_ROLE_KEY] if k]
-    
+    is_prod = settings.ENVIRONMENT.lower() == "production"
+
     bearer_token = None
     if authorization and authorization.startswith("Bearer "):
         bearer_token = authorization.split(" ", 1)[1].strip()
 
     provided_key = x_admin_key or bearer_token
 
-    if valid_keys:
-        if provided_key in valid_keys:
+    # In production or if ADMIN_API_KEY is explicitly configured
+    if is_prod or settings.ADMIN_API_KEY:
+        valid_keys = [k for k in [settings.ADMIN_API_KEY, settings.SUPABASE_SERVICE_ROLE_KEY] if k]
+        if provided_key and provided_key in valid_keys:
             return True
         if x_user_role == "admin":
             return True
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Forbidden: Administrative credentials or valid admin key required."
-        )
-
-    # In production without an explicit ADMIN_API_KEY configured, enforce admin role
-    if settings.ENVIRONMENT.lower() == "production":
-        if x_user_role == "admin":
-            return True
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Unauthorized: Anonymous invocation of administrative endpoints is disabled in production."
         )
 
     return True

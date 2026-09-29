@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Any, Union
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     ADMIN_API_KEY: Optional[str] = Field(default=None, description="Secret token to protect administrative endpoints")
     
     # CORS
-    CORS_ORIGINS: List[str] = Field(
+    CORS_ORIGINS: Union[List[str], str] = Field(
         default=["http://localhost:3000", "http://localhost:5173"],
         description="Allowed CORS origin URLs"
     )
@@ -29,7 +29,10 @@ class Settings(BaseSettings):
     # Supabase Configuration
     SUPABASE_URL: Optional[str] = Field(default=None, description="Supabase project URL")
     SUPABASE_KEY: Optional[str] = Field(default=None, description="Supabase anon public key")
+    SUPABASE_PUBLISHABLE_KEY: Optional[str] = Field(default=None, description="Supabase publishable key")
     SUPABASE_SERVICE_ROLE_KEY: Optional[str] = Field(default=None, description="Supabase service role secret key")
+    SUPABASE_SECRET_KEY: Optional[str] = Field(default=None, description="Supabase secret key")
+    SUPABASE_JWKS_URL: Optional[str] = Field(default=None, description="Supabase JWKS URL")
 
     # Direct Database Connection
     DATABASE_URL: Optional[str] = Field(
@@ -63,6 +66,17 @@ class Settings(BaseSettings):
         elif isinstance(v, (list, tuple)):
             return list(v)
         return ["*"]
+
+    def model_post_init(self, __context: Any) -> None:
+        if not self.SUPABASE_KEY and self.SUPABASE_PUBLISHABLE_KEY:
+            self.SUPABASE_KEY = self.SUPABASE_PUBLISHABLE_KEY
+        elif not self.SUPABASE_PUBLISHABLE_KEY and self.SUPABASE_KEY:
+            self.SUPABASE_PUBLISHABLE_KEY = self.SUPABASE_KEY
+
+        if not self.SUPABASE_SERVICE_ROLE_KEY and self.SUPABASE_SECRET_KEY:
+            self.SUPABASE_SERVICE_ROLE_KEY = self.SUPABASE_SECRET_KEY
+        elif not self.SUPABASE_SECRET_KEY and self.SUPABASE_SERVICE_ROLE_KEY:
+            self.SUPABASE_SECRET_KEY = self.SUPABASE_SERVICE_ROLE_KEY
 
 
 settings = Settings()
