@@ -5,8 +5,12 @@ from .schemas import (
     HealthResponse,
     CitizenRequestCreate,
     CitizenRequestResponse,
+    CitizenSubmissionResponse,
+    StandardErrorResponse,
+    StandardErrorDetail,
     StoragePathGenerateRequest,
     StoragePathGenerateResponse,
+    FileUploadResponse,
 )
 
 __all__ = [
@@ -16,6 +20,10 @@ __all__ = [
     "HealthResponse",
     "CitizenRequestCreate",
     "CitizenRequestResponse",
+    "CitizenSubmissionResponse",
+    "StandardErrorResponse",
+    "StandardErrorDetail",
     "StoragePathGenerateRequest",
     "StoragePathGenerateResponse",
+    "FileUploadResponse",
 ]

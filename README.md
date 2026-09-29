@@ -145,3 +145,30 @@ python data/scripts/load_all_to_database.py --dry-run
 python data/scripts/load_all_to_database.py
 ```
 
+---
+
+## Phase 3 — Citizen Submission System
+
+### Citizen Submission Workflow
+Phase 3 implements the citizen-facing grievance submission workflow:
+```
+Citizen ──► Login/Demo ──► Request Form (Text + Image <10MB + Voice <25MB + Location)
+           ──► Validation ──► FastAPI (/api/requests) ──► PostGIS District Containment
+           ──► Supabase PostgreSQL + Storage ──► Confirmation ──► Request History
+```
+
+- **Frontend Citizen Portal**: React 18 + Vite responsive portal with GPS geolocation, manual district selection, image upload with preview, in-browser `MediaRecorder` voice notes, and submission confirmation.
+- **Request History**: Citizens can view their past submissions, urgency status, and attached media indicators (📷 Photo, 🎤 Voice) in a dedicated dashboard.
+- **District Auto-Association**: Point-in-polygon containment resolution automatically maps coordinates to canonical district UUIDs.
+- **Security & RLS**: Strict path isolation (`{user_id}/{request_id}/{filename}`) and ownership checks ensure private grievances cannot be accessed or tampered with by other users.
+
+### Running Phase 3 Tests
+```bash
+# Run backend pytest suite (Phase 1, 2, and 3 tests)
+python -m pytest -v
+
+# Run frontend component & validation tests
+cd frontend && npm test
+```
+
+
