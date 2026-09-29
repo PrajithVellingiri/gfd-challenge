@@ -4,9 +4,9 @@ Image Analyzer Service for Multimodal Civic Infrastructure Assessment.
 
 from typing import Optional, Dict, Any
 import logging
-from backend.app.services.ai.gemini_client import GeminiClient, default_gemini_client, GeminiAPIError
-from backend.app.services.ai.prompt_templates import IMAGE_ANALYSIS_PROMPT
-from backend.app.services.ai.validators import (
+from app.services.ai.gemini_client import GeminiClient, default_gemini_client, GeminiAPIError
+from app.services.ai.prompt_templates import IMAGE_ANALYSIS_PROMPT
+from app.services.ai.validators import (
     clean_gemini_json_response,
     ImageAnalysisResult
 )

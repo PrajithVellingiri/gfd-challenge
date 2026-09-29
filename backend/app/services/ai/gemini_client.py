@@ -5,7 +5,7 @@ Provides clean interfaces for text, vision, and audio processing using the Gemin
 
 from typing import Optional, Dict, Any
 import logging
-from backend.app.config import settings
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 

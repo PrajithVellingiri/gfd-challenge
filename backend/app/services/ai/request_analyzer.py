@@ -8,19 +8,19 @@ from typing import Optional, Dict, Any, Union
 from uuid import UUID
 import logging
 
-from backend.app.config import settings
-from backend.app.services.ai.gemini_client import GeminiClient, default_gemini_client, GeminiAPIError
-from backend.app.services.ai.image_analyzer import ImageAnalyzer, default_image_analyzer
-from backend.app.services.ai.audio_analyzer import AudioAnalyzer, default_audio_analyzer
-from backend.app.services.ai.prompt_templates import PROMPT_VERSION, TEXT_ANALYSIS_SYSTEM_PROMPT
-from backend.app.services.ai.validators import (
+from app.config import settings
+from app.services.ai.gemini_client import GeminiClient, default_gemini_client, GeminiAPIError
+from app.services.ai.image_analyzer import ImageAnalyzer, default_image_analyzer
+from app.services.ai.audio_analyzer import AudioAnalyzer, default_audio_analyzer
+from app.services.ai.prompt_templates import PROMPT_VERSION, TEXT_ANALYSIS_SYSTEM_PROMPT
+from app.services.ai.validators import (
     clean_gemini_json_response,
     normalize_category,
     normalize_urgency,
     TextAnalysisResult,
     AIRequestAnalysisResponse,
 )
-from backend.app.db import get_supabase_client
+from app.db import get_supabase_client
 
 logger = logging.getLogger(__name__)
 

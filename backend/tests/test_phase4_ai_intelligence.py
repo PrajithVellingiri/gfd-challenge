@@ -21,10 +21,10 @@ from uuid import uuid4
 import pytest
 from fastapi.testclient import TestClient
 
-from backend.app.main import app
-from backend.app.services.ai.gemini_client import GeminiClient, GeminiAPIError
-from backend.app.services.ai.prompt_templates import PROMPT_VERSION, TEXT_ANALYSIS_SYSTEM_PROMPT, IMAGE_ANALYSIS_PROMPT, AUDIO_ANALYSIS_PROMPT
-from backend.app.services.ai.validators import (
+from app.main import app
+from app.services.ai.gemini_client import GeminiClient, GeminiAPIError
+from app.services.ai.prompt_templates import PROMPT_VERSION, TEXT_ANALYSIS_SYSTEM_PROMPT, IMAGE_ANALYSIS_PROMPT, AUDIO_ANALYSIS_PROMPT
+from app.services.ai.validators import (
     clean_gemini_json_response,
     normalize_category,
     normalize_urgency,
@@ -35,9 +35,9 @@ from backend.app.services.ai.validators import (
     AudioAnalysisResult,
     AIRequestAnalysisResponse,
 )
-from backend.app.services.ai.image_analyzer import ImageAnalyzer
-from backend.app.services.ai.audio_analyzer import AudioAnalyzer
-from backend.app.services.ai.request_analyzer import RequestAnalyzer
+from app.services.ai.image_analyzer import ImageAnalyzer
+from app.services.ai.audio_analyzer import AudioAnalyzer
+from app.services.ai.request_analyzer import RequestAnalyzer
 
 client = TestClient(app)
 MIGRATIONS_DIR = Path(__file__).parent.parent / "migrations"

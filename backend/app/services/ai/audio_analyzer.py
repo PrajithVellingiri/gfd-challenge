@@ -4,9 +4,9 @@ Audio Analyzer Service for Citizen Voice Note Transcription and Reasoning.
 
 from typing import Optional
 import logging
-from backend.app.services.ai.gemini_client import GeminiClient, default_gemini_client
-from backend.app.services.ai.prompt_templates import AUDIO_ANALYSIS_PROMPT
-from backend.app.services.ai.validators import (
+from app.services.ai.gemini_client import GeminiClient, default_gemini_client
+from app.services.ai.prompt_templates import AUDIO_ANALYSIS_PROMPT
+from app.services.ai.validators import (
     clean_gemini_json_response,
     AudioAnalysisResult
 )
