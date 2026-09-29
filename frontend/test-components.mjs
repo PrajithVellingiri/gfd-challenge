@@ -29,6 +29,11 @@ const requiredFiles = [
   'src/components/CitizenRequestHistory.jsx',
   'src/components/AIAnalysisCard.jsx',
   'src/components/RequestIntelligenceSection.jsx',
+  'src/components/infrastructure/DemandMetricCard.jsx',
+  'src/components/infrastructure/InfrastructureMetricCard.jsx',
+  'src/components/infrastructure/GapSignalCard.jsx',
+  'src/components/infrastructure/DataProvenance.jsx',
+  'src/components/infrastructure/DistrictIntelligenceCard.jsx',
   'src/pages/CitizenPortal.jsx'
 ];
 
@@ -103,6 +108,34 @@ for (const urg of requiredUrgencies) {
   }
 }
 console.log(`[PASS] CitizenPortal supports Low, Medium, High, Critical urgencies`);
+
+// 4. Validate Infrastructure Intelligence API Client functions
+const apiCode = fs.readFileSync(path.join(__dirname, 'src/services/api.js'), 'utf-8');
+const requiredApiFunctions = [
+  'fetchDistrictIntelligence',
+  'fetchDistrictIntelligenceById',
+  'fetchDistrictSectors',
+  'fetchGapSignals',
+  'refreshInfrastructureIntelligence'
+];
+for (const fn of requiredApiFunctions) {
+  if (!apiCode.includes(`export async function ${fn}`)) {
+    console.error(`[FAIL] api.js missing function: ${fn}`);
+    failed = true;
+  }
+}
+console.log(`[PASS] api.js implements all Phase 6 Infrastructure Intelligence functions`);
+
+// 5. Validate GapSignalCard signal states
+const gapCardCode = fs.readFileSync(path.join(__dirname, 'src/components/infrastructure/GapSignalCard.jsx'), 'utf-8');
+const requiredSignals = ['potential_gap', 'infrastructure_pressure', 'demand_supply_signal', 'balanced', 'insufficient_data'];
+for (const sig of requiredSignals) {
+  if (!gapCardCode.includes(sig)) {
+    console.error(`[FAIL] GapSignalCard missing signal state: ${sig}`);
+    failed = true;
+  }
+}
+console.log(`[PASS] GapSignalCard handles all 5 explainable mismatch states`);
 
 if (failed) {
   console.error('Frontend tests failed.');

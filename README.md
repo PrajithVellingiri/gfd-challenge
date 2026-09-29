@@ -253,7 +253,7 @@ Emerging Issue & Surge Detection (Period-over-Period Growth)
 
 ### Running Complete Test Suite
 ```bash
-# Backend test suite (Phase 1, 2, 3, 4, and 5 — 77 tests)
+# Backend test suite (Phase 1, 2, 3, 4, 5, and 6 — 101 tests)
 $env:PYTHONPATH=".;backend"; python -m pytest -v
 
 # Frontend component tests & production Vite build
@@ -261,6 +261,48 @@ cd frontend
 npm test
 npm run build
 ```
+
+---
+
+## Phase 6 — Infrastructure Intelligence & Gap Detection
+
+### Architecture & Gap Detection Engine
+Phase 6 connects citizen demand intelligence (Phase 3–5) with public infrastructure availability and demographic datasets (Phase 1–2):
+
+```
+       Citizen Demand (Phase 3-5)          Public Infrastructure & Demographics (Phase 1-2)
+  (Total requests, 7d growth, per 10k)       (Census 2011, HMIS facilities, NFHS-5, Investments)
+                   \                                        /
+                    \                                      /
+                     ▼                                    ▼
+                 Relative Cross-District Percentile Ranking (0 - 100%)
+                                          ↓
+               Explainable Decision-Support Indicators & Gap Signals
+               - potential_gap (High Demand + Low Infrastructure)
+               - infrastructure_pressure (High Demand + Moderate Infrastructure)
+               - demand_supply_signal (Concentrated Grievance Clusters)
+               - balanced (Demand and Infrastructure in Alignment)
+               - insufficient_data (Sample size or public records missing)
+```
+
+- **Population Normalization**: Per-capita rates safely computed (facilities/100k, beds/10k, doctors/10k, requests/10k) with zero-divisor guards.
+- **Relative Cross-District Percentiles**: Standardized comparative rankings (0th to 100th percentile) across all 44 canonical districts.
+- **Transparent Data Provenance**: Every record explicitly distinguishes official datasets (Census 2011, HMIS, NFHS-5) from synthetic hackathon engines with timestamps, citations, and limitation notes.
+- **Explainable Decision-Support Signals**: Rule-based mismatch indicators with structured observations (`what_was_observed`, `infrastructure_observed`, `why_signal_generated`) avoiding opaque composite scores.
+- **Privacy & PII Isolation**: Aggregated district-level metrics ensure zero citizen personal identifier leakage.
+- **Reusable Frontend Components**: Modular UI elements (`DemandMetricCard`, `InfrastructureMetricCard`, `GapSignalCard`, `DataProvenance`, `DistrictIntelligenceCard`).
+
+### Verification & Testing
+```bash
+# Run all Phase 1-6 backend automated tests (101 tests)
+$env:PYTHONPATH=".;backend"; python -m pytest -v
+
+# Run frontend tests & production Vite build
+cd frontend
+npm test
+npm run build
+```
+
 
 
 

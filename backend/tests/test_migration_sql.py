@@ -22,6 +22,7 @@ def test_migrations_exist():
         "004_health_indicators.sql",
         "005_ai_analyses_enhancements.sql",
         "006_request_intelligence.sql",
+        "007_infrastructure_intelligence.sql",
     ]
     for f in files:
         assert (MIGRATIONS_DIR / f).exists(), f"Missing migration file {f}"
@@ -129,3 +130,25 @@ def test_003_rls_policies_contents():
     assert "citizens can view their own requests" in sql
     assert "policymaker" in sql
     assert "admin" in sql
+
+
+def test_007_infrastructure_intelligence_contents():
+    """
+    Verifies district_intelligence table, columns, indexes, and RLS policies.
+    """
+    sql = read_migration("007_infrastructure_intelligence.sql").lower()
+
+    assert "create table if not exists public.district_intelligence" in sql
+    assert "district_id" in sql
+    assert "sector" in sql
+    assert "population" in sql
+    assert "population_source" in sql
+    assert "mismatch_signal" in sql
+    assert "gap_signal" in sql
+    assert "demand_percentile" in sql
+    assert "infrastructure_percentile" in sql
+    assert "data_sources" in sql
+    assert "idx_district_intel_district_id" in sql
+    assert "idx_district_intel_sector" in sql
+    assert "idx_district_intel_mismatch_signal" in sql
+    assert "alter table public.district_intelligence enable row level security" in sql

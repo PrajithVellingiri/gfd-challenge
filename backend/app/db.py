@@ -749,3 +749,161 @@ def fetch_emerging_issues(
     return matches
 
 
+# =============================================================================
+# Phase 6: District Infrastructure Intelligence Operations
+# =============================================================================
+
+_memory_district_intelligence = {}
+
+
+def save_district_intelligence_records(records: List[Dict[str, Any]]) -> bool:
+    """Saves or updates district intelligence records in memory and database."""
+    global _memory_district_intelligence
+    for rec in records:
+        key = (str(rec["district_id"]), str(rec["sector"]))
+        _memory_district_intelligence[key] = rec
+
+    if settings.DATABASE_URL:
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    for rec in records:
+                        cur.execute("""
+                            INSERT INTO public.district_intelligence (
+                                district_id, sector, population, population_source,
+                                total_requests, requests_last_7_days, requests_previous_7_days,
+                                request_growth_percentage, requests_per_10000,
+                                demand_percentile, infrastructure_percentile,
+                                demand_metrics, infrastructure_metrics, health_metrics,
+                                investment_metrics, cluster_metrics, mismatch_signal,
+                                gap_signal, data_sources, computed_at
+                            ) VALUES (
+                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                %s, %s, %s, %s, %s, %s, %s, %s, now()
+                            )
+                            ON CONFLICT (district_id, sector) DO UPDATE SET
+                                population = EXCLUDED.population,
+                                population_source = EXCLUDED.population_source,
+                                total_requests = EXCLUDED.total_requests,
+                                requests_last_7_days = EXCLUDED.requests_last_7_days,
+                                requests_previous_7_days = EXCLUDED.requests_previous_7_days,
+                                request_growth_percentage = EXCLUDED.request_growth_percentage,
+                                requests_per_10000 = EXCLUDED.requests_per_10000,
+                                demand_percentile = EXCLUDED.demand_percentile,
+                                infrastructure_percentile = EXCLUDED.infrastructure_percentile,
+                                demand_metrics = EXCLUDED.demand_metrics,
+                                infrastructure_metrics = EXCLUDED.infrastructure_metrics,
+                                health_metrics = EXCLUDED.health_metrics,
+                                investment_metrics = EXCLUDED.investment_metrics,
+                                cluster_metrics = EXCLUDED.cluster_metrics,
+                                mismatch_signal = EXCLUDED.mismatch_signal,
+                                gap_signal = EXCLUDED.gap_signal,
+                                data_sources = EXCLUDED.data_sources,
+                                updated_at = now();
+                        """, (
+                            rec["district_id"], rec["sector"], rec.get("population"), rec.get("population_source"),
+                            rec.get("total_requests", 0), rec.get("requests_last_7_days", 0), rec.get("requests_previous_7_days", 0),
+                            rec.get("request_growth_percentage"), rec.get("requests_per_10000"),
+                            rec.get("demand_percentile"), rec.get("infrastructure_percentile"),
+                            json.dumps(rec.get("demand_metrics", {})),
+                            json.dumps(rec.get("infrastructure_metrics", {})),
+                            json.dumps(rec.get("health_metrics", {})),
+                            json.dumps(rec.get("investment_metrics", {})),
+                            json.dumps(rec.get("cluster_metrics", {})),
+                            rec.get("mismatch_signal", "balanced"),
+                            json.dumps(rec.get("gap_signal", {})),
+                            json.dumps(rec.get("data_sources", []))
+                        ))
+                    conn.commit()
+                    return True
+            except Exception as e:
+                logger.error(f"Error saving district intelligence via PostgreSQL: {type(e).__name__}")
+            finally:
+                conn.close()
+
+    return True
+
+
+def fetch_district_intelligence(
+    district_id: str,
+    sector: Optional[str] = None
+) -> List[Dict[str, Any]]:
+    """Retrieves intelligence records for a specific district across one or all sectors."""
+    d_id = str(district_id)
+    matches = []
+
+    for (stored_did, stored_sec), rec in _memory_district_intelligence.items():
+        if stored_did == d_id:
+            if not sector or stored_sec.lower() == sector.lower():
+                matches.append(rec)
+
+    if settings.DATABASE_URL:
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    query = "SELECT * FROM public.district_intelligence WHERE district_id = %s"
+                    params = [d_id]
+                    if sector:
+                        query += " AND LOWER(sector) = LOWER(%s)"
+                        params.append(sector)
+                    query += " ORDER BY sector ASC;"
+                    cur.execute(query, params)
+                    rows = cur.fetchall()
+                    for r in rows:
+                        sec = r["sector"]
+                        if not any(m["sector"] == sec for m in matches):
+                            matches.append(dict(r))
+            except Exception as e:
+                logger.error(f"Error fetching district intelligence via PostgreSQL: {type(e).__name__}")
+            finally:
+                conn.close()
+
+    return matches
+
+
+def list_district_intelligence_records(
+    sector: Optional[str] = None,
+    mismatch_signal: Optional[str] = None,
+    limit: int = 200
+) -> List[Dict[str, Any]]:
+    """Lists district intelligence records matching optional filters."""
+    matches = []
+    for (stored_did, stored_sec), rec in _memory_district_intelligence.items():
+        if sector and stored_sec.lower() != sector.lower():
+            continue
+        if mismatch_signal and rec.get("mismatch_signal") != mismatch_signal:
+            continue
+        matches.append(rec)
+
+    if settings.DATABASE_URL:
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    query = "SELECT * FROM public.district_intelligence WHERE 1=1"
+                    params = []
+                    if sector:
+                        query += " AND LOWER(sector) = LOWER(%s)"
+                        params.append(sector)
+                    if mismatch_signal:
+                        query += " AND mismatch_signal = %s"
+                        params.append(mismatch_signal)
+                    query += " ORDER BY demand_percentile DESC NULLS LAST LIMIT %s;"
+                    params.append(limit)
+                    cur.execute(query, params)
+                    rows = cur.fetchall()
+                    for r in rows:
+                        key = (str(r["district_id"]), str(r["sector"]))
+                        if not any(str(m["district_id"]) == str(r["district_id"]) and m["sector"] == r["sector"] for m in matches):
+                            matches.append(dict(r))
+            except Exception as e:
+                logger.error(f"Error listing district intelligence via PostgreSQL: {type(e).__name__}")
+            finally:
+                conn.close()
+
+    return matches
+
+
+

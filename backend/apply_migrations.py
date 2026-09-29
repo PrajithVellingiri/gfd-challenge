@@ -21,6 +21,7 @@ MIGRATION_FILES = [
     "004_health_indicators.sql",
     "005_ai_analyses_enhancements.sql",
     "006_request_intelligence.sql",
+    "007_infrastructure_intelligence.sql",
 ]
 
 

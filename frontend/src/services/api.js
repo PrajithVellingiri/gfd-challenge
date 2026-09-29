@@ -234,4 +234,79 @@ export async function fetchEmergingIssues(districtId = null, category = null, wi
   return Array.isArray(data) ? data : [];
 }
 
+/**
+ * Fetches district intelligence summaries or filtered by sector.
+ */
+export async function fetchDistrictIntelligence(districtId = null, sector = null) {
+  let url = `${API_BASE_URL}/api/infrastructure/districts`;
+  const params = [];
+  if (districtId) params.push(`district_id=${encodeURIComponent(districtId)}`);
+  if (sector) params.push(`sector=${encodeURIComponent(sector)}`);
+  if (params.length > 0) url += `?${params.join('&')}`;
+
+  const response = await fetch(url, { method: 'GET' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch district intelligence');
+  }
+  return Array.isArray(data) ? data : [];
+}
+
+/**
+ * Fetches detailed intelligence for a specific district across all sectors.
+ */
+export async function fetchDistrictIntelligenceById(districtId) {
+  const url = `${API_BASE_URL}/api/infrastructure/districts/${encodeURIComponent(districtId)}`;
+  const response = await fetch(url, { method: 'GET' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch district details');
+  }
+  return data;
+}
+
+/**
+ * Fetches sector breakdowns for a district.
+ */
+export async function fetchDistrictSectors(districtId) {
+  const url = `${API_BASE_URL}/api/infrastructure/districts/${encodeURIComponent(districtId)}/sectors`;
+  const response = await fetch(url, { method: 'GET' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch district sectors');
+  }
+  return data;
+}
+
+/**
+ * Fetches explainable gap signals across districts.
+ */
+export async function fetchGapSignals(sector = null, signalType = null) {
+  let url = `${API_BASE_URL}/api/infrastructure/gap-signals`;
+  const params = [];
+  if (sector) params.push(`sector=${encodeURIComponent(sector)}`);
+  if (signalType) params.push(`signal_type=${encodeURIComponent(signalType)}`);
+  if (params.length > 0) url += `?${params.join('&')}`;
+
+  const response = await fetch(url, { method: 'GET' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch gap signals');
+  }
+  return Array.isArray(data) ? data : [];
+}
+
+/**
+ * Re-runs infrastructure intelligence aggregation engine.
+ */
+export async function refreshInfrastructureIntelligence() {
+  const url = `${API_BASE_URL}/api/infrastructure/refresh`;
+  const response = await fetch(url, { method: 'POST' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to refresh intelligence');
+  }
+  return data;
+}
+
 
