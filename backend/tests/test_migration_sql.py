@@ -13,9 +13,16 @@ def read_migration(filename: str) -> str:
 
 def test_migrations_exist():
     """
-    Verifies that all three core migration files exist.
+    Verifies that all migration files exist.
     """
-    files = ["001_initial_schema.sql", "002_storage_setup.sql", "003_rls_policies.sql"]
+    files = [
+        "001_initial_schema.sql",
+        "002_storage_setup.sql",
+        "003_rls_policies.sql",
+        "004_health_indicators.sql",
+        "005_ai_analyses_enhancements.sql",
+        "006_request_intelligence.sql",
+    ]
     for f in files:
         assert (MIGRATIONS_DIR / f).exists(), f"Missing migration file {f}"
 

@@ -133,3 +133,105 @@ export async function fetchAIAnalysis(requestId, userId) {
   return data;
 }
 
+/**
+ * Fetches semantically similar requests for a citizen's request.
+ */
+export async function fetchSimilarRequests(requestId, userId, topK = 10) {
+  const url = userId
+    ? `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/similar?top_k=${topK}&user_id=${encodeURIComponent(userId)}`
+    : `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/similar?top_k=${topK}`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      ...(userId ? { 'X-User-Id': userId } : {})
+    }
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch similar requests');
+  }
+  return Array.isArray(data) ? data : [];
+}
+
+/**
+ * Fetches duplicate or near-duplicate requests.
+ */
+export async function fetchDuplicateRequests(requestId, userId) {
+  const url = userId
+    ? `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/duplicates?user_id=${encodeURIComponent(userId)}`
+    : `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/duplicates`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      ...(userId ? { 'X-User-Id': userId } : {})
+    }
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch duplicate requests');
+  }
+  return Array.isArray(data) ? data : [];
+}
+
+/**
+ * Triggers request intelligence calculation.
+ */
+export async function triggerRequestIntelligence(requestId, userId) {
+  const url = userId
+    ? `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/intelligence?user_id=${encodeURIComponent(userId)}`
+    : `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/intelligence`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(userId ? { 'X-User-Id': userId } : {})
+    }
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to trigger intelligence');
+  }
+  return data;
+}
+
+/**
+ * Fetches semantic request clusters.
+ */
+export async function fetchClusters(districtId = null, category = null) {
+  let url = `${API_BASE_URL}/api/intelligence/clusters`;
+  const params = [];
+  if (districtId) params.push(`district_id=${encodeURIComponent(districtId)}`);
+  if (category) params.push(`category=${encodeURIComponent(category)}`);
+  if (params.length > 0) url += `?${params.join('&')}`;
+
+  const response = await fetch(url, { method: 'GET' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch clusters');
+  }
+  return Array.isArray(data) ? data : [];
+}
+
+/**
+ * Fetches emerging issue signals.
+ */
+export async function fetchEmergingIssues(districtId = null, category = null, windowDays = 7) {
+  let url = `${API_BASE_URL}/api/intelligence/emerging-issues?window_days=${windowDays}`;
+  if (districtId) url += `&district_id=${encodeURIComponent(districtId)}`;
+  if (category) url += `&category=${encodeURIComponent(category)}`;
+
+  const response = await fetch(url, { method: 'GET' });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch emerging issues');
+  }
+  return Array.isArray(data) ? data : [];
+}
+
+

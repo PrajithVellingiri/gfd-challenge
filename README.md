@@ -224,5 +224,44 @@ npm test
 npm run build
 ```
 
+---
+
+## Phase 5 — Request Intelligence
+
+### Relational Intelligence Architecture
+Phase 5 transforms individual analyzed citizen requests into relational community intelligence:
+
+```
+Individual Citizen Requests
+            ↓
+Semantic Vector Embeddings (768-dim)
+            ↓
+Pairwise Cosine Similarity & Nearest Neighbors
+            ↓
+Duplicate / Near-Duplicate Detection (Geographically Verified)
+            ↓
+District-Aware Semantic Clustering (DBSCAN)
+            ↓
+Emerging Issue & Surge Detection (Period-over-Period Growth)
+```
+
+- **Semantic Vector Embeddings**: 768-dimensional normalized embeddings with provider abstraction (Google Gemini `models/text-embedding-004` and deterministic mock fallback).
+- **Duplicate vs. Similar Differentiation**: Enforces location awareness—high semantic similarity across different districts is classified as *similar*, while identical needs in the same locality are flagged as *duplicates*.
+- **District-Aware Semantic Clustering**: Employs DBSCAN with precomputed cosine distance matrices partitioned by `(district_id, category)`, synthesizing deterministic human-readable cluster labels from member sub-categories and keywords.
+- **Emerging Issue Surge Detection**: Compares request volume in current observation windows against prior windows, transparently calculating period-over-period growth and reporting `AI/data-derived signals`.
+- **Privacy-Guaranteed Citizen UI**: Anonymized similarity counts and duplicate groups rendered in `RequestIntelligenceSection.jsx` without leaking personal identities.
+
+### Running Complete Test Suite
+```bash
+# Backend test suite (Phase 1, 2, 3, 4, and 5 — 77 tests)
+$env:PYTHONPATH=".;backend"; python -m pytest -v
+
+# Frontend component tests & production Vite build
+cd frontend
+npm test
+npm run build
+```
+
+
 
 

@@ -20,6 +20,7 @@ MIGRATION_FILES = [
     "003_rls_policies.sql",
     "004_health_indicators.sql",
     "005_ai_analyses_enhancements.sql",
+    "006_request_intelligence.sql",
 ]
 
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { fetchCitizenRequests } from '../services/api';
 import AIAnalysisCard from './AIAnalysisCard';
+import RequestIntelligenceSection from './RequestIntelligenceSection';
 import { Image, Mic, MapPin, Calendar, Clock, RefreshCw, AlertCircle } from 'lucide-react';
 
 export default function CitizenRequestHistory({ onNewRequest }) {
@@ -154,6 +155,14 @@ export default function CitizenRequestHistory({ onNewRequest }) {
           <AIAnalysisCard
             requestId={req.id}
             userId={user?.id}
+          />
+
+          {/* Phase 5: Request Intelligence (Similarity & Relational Network) */}
+          <RequestIntelligenceSection
+            requestId={req.id}
+            userId={user?.id}
+            category={req.category}
+            districtName={req.district_name || req.location_name}
           />
         </div>
       ))}

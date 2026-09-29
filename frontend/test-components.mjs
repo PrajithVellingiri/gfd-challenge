@@ -28,6 +28,7 @@ const requiredFiles = [
   'src/components/SubmissionSuccess.jsx',
   'src/components/CitizenRequestHistory.jsx',
   'src/components/AIAnalysisCard.jsx',
+  'src/components/RequestIntelligenceSection.jsx',
   'src/pages/CitizenPortal.jsx'
 ];
 
