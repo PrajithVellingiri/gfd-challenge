@@ -18,6 +18,7 @@ MIGRATION_FILES = [
     "001_initial_schema.sql",
     "002_storage_setup.sql",
     "003_rls_policies.sql",
+    "004_health_indicators.sql",
 ]
 
 
@@ -69,7 +70,7 @@ def run_migrations(database_url: str = None) -> bool:
                 "INSERT INTO public._schema_migrations (version) VALUES (%s);",
                 (filename,)
             )
-            print(f"[✓] Successfully applied: {filename}")
+            print(f"[OK] Successfully applied: {filename}")
         except Exception as e:
             print(f"[ERROR] Error applying migration {filename}: {e}", file=sys.stderr)
             success = False

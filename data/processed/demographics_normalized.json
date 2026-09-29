@@ -1,0 +1,750 @@
+[
+  {
+    "district_id": "9ac93da1-6843-5c03-abd4-b2a1c3fbf6ef",
+    "district_name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "country": "India",
+    "population": 9621551,
+    "rural_population": 871607,
+    "urban_population": 8749944,
+    "demographic_indicators": {
+      "literacy_rate": 87.67,
+      "sex_ratio_females_per_1000_males": 916,
+      "urbanization_pct": 90.94
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "bc555196-e3e5-58c7-8c08-30ebe00969d8",
+    "district_name": "Mysuru",
+    "state": "Karnataka",
+    "country": "India",
+    "population": 3001127,
+    "rural_population": 1755714,
+    "urban_population": 1245413,
+    "demographic_indicators": {
+      "literacy_rate": 72.79,
+      "sex_ratio_females_per_1000_males": 985,
+      "urbanization_pct": 41.5
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "430a7429-e3c3-5e76-b962-b18488e1270b",
+    "district_name": "Belagavi",
+    "state": "Karnataka",
+    "country": "India",
+    "population": 4779661,
+    "rural_population": 3568778,
+    "urban_population": 1210883,
+    "demographic_indicators": {
+      "literacy_rate": 73.48,
+      "sex_ratio_females_per_1000_males": 973,
+      "urbanization_pct": 25.33
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "4bfb5ca4-5f2a-56bc-8f11-fffd4acb0784",
+    "district_name": "Kalaburagi",
+    "state": "Karnataka",
+    "country": "India",
+    "population": 2566326,
+    "rural_population": 1729012,
+    "urban_population": 837314,
+    "demographic_indicators": {
+      "literacy_rate": 64.85,
+      "sex_ratio_females_per_1000_males": 971,
+      "urbanization_pct": 32.63
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "f08ea835-5b91-5746-bbc1-b1426c97c866",
+    "district_name": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "population": 4646732,
+    "rural_population": 0,
+    "urban_population": 4646732,
+    "demographic_indicators": {
+      "literacy_rate": 90.18,
+      "sex_ratio_females_per_1000_males": 989,
+      "urbanization_pct": 100.0
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "b466bb28-25b4-5f21-8fe0-6840580cbbdc",
+    "district_name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "population": 3458045,
+    "rural_population": 846875,
+    "urban_population": 2611170,
+    "demographic_indicators": {
+      "literacy_rate": 83.98,
+      "sex_ratio_females_per_1000_males": 1000,
+      "urbanization_pct": 75.51
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "9189fae6-2c44-50f9-83ee-b9d3cd2584f7",
+    "district_name": "Madurai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "population": 3038252,
+    "rural_population": 1191060,
+    "urban_population": 1847192,
+    "demographic_indicators": {
+      "literacy_rate": 83.45,
+      "sex_ratio_females_per_1000_males": 990,
+      "urbanization_pct": 60.8
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "cec563bc-a69c-51a2-bbef-15d8c9632c88",
+    "district_name": "Kanchipuram",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "population": 3998252,
+    "rural_population": 1450252,
+    "urban_population": 2548000,
+    "demographic_indicators": {
+      "literacy_rate": 84.49,
+      "sex_ratio_females_per_1000_males": 986,
+      "urbanization_pct": 63.73
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "be49b3cd-c044-5d54-ad56-af44a9eecd7f",
+    "district_name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "country": "India",
+    "population": 3301427,
+    "rural_population": 1526154,
+    "urban_population": 1775273,
+    "demographic_indicators": {
+      "literacy_rate": 93.02,
+      "sex_ratio_females_per_1000_males": 1088,
+      "urbanization_pct": 53.77
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "68547ca8-359e-5838-addb-752fb4404db3",
+    "district_name": "Ernakulam",
+    "state": "Kerala",
+    "country": "India",
+    "population": 3282388,
+    "rural_population": 1047124,
+    "urban_population": 2235264,
+    "demographic_indicators": {
+      "literacy_rate": 95.89,
+      "sex_ratio_females_per_1000_males": 1027,
+      "urbanization_pct": 68.1
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "a1391c31-9a46-546a-9965-2a77f10c8755",
+    "district_name": "Wayanad",
+    "state": "Kerala",
+    "country": "India",
+    "population": 817420,
+    "rural_population": 785840,
+    "urban_population": 31580,
+    "demographic_indicators": {
+      "literacy_rate": 89.03,
+      "sex_ratio_females_per_1000_males": 1035,
+      "urbanization_pct": 3.86
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "dbc88fe8-d2e3-5a58-beae-49c0fc4da902",
+    "district_name": "Mumbai Suburban",
+    "state": "Maharashtra",
+    "country": "India",
+    "population": 9356962,
+    "rural_population": 0,
+    "urban_population": 9356962,
+    "demographic_indicators": {
+      "literacy_rate": 89.91,
+      "sex_ratio_females_per_1000_males": 860,
+      "urbanization_pct": 100.0
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "5b29a986-90af-5197-a716-6ca4eda07b8f",
+    "district_name": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "population": 9429408,
+    "rural_population": 3673808,
+    "urban_population": 5755600,
+    "demographic_indicators": {
+      "literacy_rate": 86.15,
+      "sex_ratio_females_per_1000_males": 915,
+      "urbanization_pct": 61.04
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "50fac2bc-0a2b-544f-9fd1-5e3a30a567f7",
+    "district_name": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "population": 4653570,
+    "rural_population": 1473228,
+    "urban_population": 3180342,
+    "demographic_indicators": {
+      "literacy_rate": 88.39,
+      "sex_ratio_females_per_1000_males": 951,
+      "urbanization_pct": 68.34
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "154ab132-1734-5de6-a523-0cf1551daf20",
+    "district_name": "Gadchiroli",
+    "state": "Maharashtra",
+    "country": "India",
+    "population": 1072942,
+    "rural_population": 954909,
+    "urban_population": 118033,
+    "demographic_indicators": {
+      "literacy_rate": 74.36,
+      "sex_ratio_females_per_1000_males": 982,
+      "urbanization_pct": 11.0
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "c6ebf98c-c48d-5b11-880e-6f65b6f955a3",
+    "district_name": "Ahmedabad",
+    "state": "Gujarat",
+    "country": "India",
+    "population": 7214225,
+    "rural_population": 1146200,
+    "urban_population": 6068025,
+    "demographic_indicators": {
+      "literacy_rate": 85.31,
+      "sex_ratio_females_per_1000_males": 904,
+      "urbanization_pct": 84.11
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "0cc05ad2-c44e-5be9-824b-025307f49cba",
+    "district_name": "Surat",
+    "state": "Gujarat",
+    "country": "India",
+    "population": 6081322,
+    "rural_population": 1235122,
+    "urban_population": 4846200,
+    "demographic_indicators": {
+      "literacy_rate": 85.53,
+      "sex_ratio_females_per_1000_males": 787,
+      "urbanization_pct": 79.69
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "f3ba0272-1e51-5635-bacd-41f19af695c2",
+    "district_name": "Rajkot",
+    "state": "Gujarat",
+    "country": "India",
+    "population": 3804558,
+    "rural_population": 1592358,
+    "urban_population": 2212200,
+    "demographic_indicators": {
+      "literacy_rate": 80.96,
+      "sex_ratio_females_per_1000_males": 927,
+      "urbanization_pct": 58.15
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "ae5df9b1-6cfe-584d-95ae-042ee1b6312c",
+    "district_name": "Vadodara",
+    "state": "Gujarat",
+    "country": "India",
+    "population": 4165626,
+    "rural_population": 2100626,
+    "urban_population": 2065000,
+    "demographic_indicators": {
+      "literacy_rate": 79.16,
+      "sex_ratio_females_per_1000_males": 934,
+      "urbanization_pct": 49.57
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "faebc021-fd22-5d8d-bfbc-9745202a3812",
+    "district_name": "Varanasi",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "population": 3676841,
+    "rural_population": 2079351,
+    "urban_population": 1597490,
+    "demographic_indicators": {
+      "literacy_rate": 75.6,
+      "sex_ratio_females_per_1000_males": 913,
+      "urbanization_pct": 43.45
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "ceacece6-e23f-59df-a424-c823beedf50f",
+    "district_name": "Lucknow",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "population": 4589838,
+    "rural_population": 1550842,
+    "urban_population": 3038996,
+    "demographic_indicators": {
+      "literacy_rate": 77.29,
+      "sex_ratio_females_per_1000_males": 917,
+      "urbanization_pct": 66.21
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "23d613dc-ccd0-50c1-bd16-dc1d618784af",
+    "district_name": "Gorakhpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "population": 4440895,
+    "rural_population": 3600895,
+    "urban_population": 840000,
+    "demographic_indicators": {
+      "literacy_rate": 70.83,
+      "sex_ratio_females_per_1000_males": 959,
+      "urbanization_pct": 18.92
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "50e0161d-c08d-5a20-b993-937df564320c",
+    "district_name": "Bahraich",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "population": 3487731,
+    "rural_population": 3192000,
+    "urban_population": 295731,
+    "demographic_indicators": {
+      "literacy_rate": 49.36,
+      "sex_ratio_females_per_1000_males": 892,
+      "urbanization_pct": 8.48
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "4d58f288-4d31-5ca7-b84f-5c16b5d2fa24",
+    "district_name": "Patna",
+    "state": "Bihar",
+    "country": "India",
+    "population": 5838465,
+    "rural_population": 3280000,
+    "urban_population": 2558465,
+    "demographic_indicators": {
+      "literacy_rate": 70.68,
+      "sex_ratio_females_per_1000_males": 897,
+      "urbanization_pct": 43.82
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "3f722ab9-b57f-5f81-8c85-b601bdfe367e",
+    "district_name": "Gaya",
+    "state": "Bihar",
+    "country": "India",
+    "population": 4391418,
+    "rural_population": 3800000,
+    "urban_population": 591418,
+    "demographic_indicators": {
+      "literacy_rate": 63.68,
+      "sex_ratio_females_per_1000_males": 937,
+      "urbanization_pct": 13.47
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "6bbfdf5a-115f-5529-b073-572f7c4d1862",
+    "district_name": "Muzaffarpur",
+    "state": "Bihar",
+    "country": "India",
+    "population": 4801062,
+    "rural_population": 4340000,
+    "urban_population": 461062,
+    "demographic_indicators": {
+      "literacy_rate": 63.43,
+      "sex_ratio_females_per_1000_males": 900,
+      "urbanization_pct": 9.6
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "78275107-0258-5a03-97cc-8e69b678a981",
+    "district_name": "Purnia",
+    "state": "Bihar",
+    "country": "India",
+    "population": 3264619,
+    "rural_population": 2920000,
+    "urban_population": 344619,
+    "demographic_indicators": {
+      "literacy_rate": 51.08,
+      "sex_ratio_females_per_1000_males": 921,
+      "urbanization_pct": 10.56
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "c597db33-6aac-565d-99e5-7bc7e3e72348",
+    "district_name": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "population": 6626178,
+    "rural_population": 3150000,
+    "urban_population": 3476178,
+    "demographic_indicators": {
+      "literacy_rate": 75.51,
+      "sex_ratio_females_per_1000_males": 910,
+      "urbanization_pct": 52.46
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "3e5db21c-0788-5db1-8366-e8dee8f4318c",
+    "district_name": "Jodhpur",
+    "state": "Rajasthan",
+    "country": "India",
+    "population": 3687002,
+    "rural_population": 2420000,
+    "urban_population": 1267002,
+    "demographic_indicators": {
+      "literacy_rate": 65.94,
+      "sex_ratio_females_per_1000_males": 916,
+      "urbanization_pct": 34.36
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "7249b7df-b387-5423-8bf0-0474f3813ca4",
+    "district_name": "Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "population": 3068420,
+    "rural_population": 2460000,
+    "urban_population": 608420,
+    "demographic_indicators": {
+      "literacy_rate": 61.82,
+      "sex_ratio_females_per_1000_males": 967,
+      "urbanization_pct": 19.83
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "37209a96-fc5f-5d2b-a08c-12b01db6729c",
+    "district_name": "Jaisalmer",
+    "state": "Rajasthan",
+    "country": "India",
+    "population": 669919,
+    "rural_population": 580000,
+    "urban_population": 89919,
+    "demographic_indicators": {
+      "literacy_rate": 57.22,
+      "sex_ratio_females_per_1000_males": 852,
+      "urbanization_pct": 13.42
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "798c4568-fed1-595d-95ca-c925710b4abf",
+    "district_name": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "population": 4496694,
+    "rural_population": 0,
+    "urban_population": 4496694,
+    "demographic_indicators": {
+      "literacy_rate": 86.31,
+      "sex_ratio_females_per_1000_males": 908,
+      "urbanization_pct": 100.0
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "a0dc562f-ad75-5d78-a6d0-82290425383d",
+    "district_name": "Darjeeling",
+    "state": "West Bengal",
+    "country": "India",
+    "population": 1846823,
+    "rural_population": 1120000,
+    "urban_population": 726823,
+    "demographic_indicators": {
+      "literacy_rate": 79.56,
+      "sex_ratio_females_per_1000_males": 970,
+      "urbanization_pct": 39.36
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "91176898-3bc4-5313-b318-84f50b989041",
+    "district_name": "Murshidabad",
+    "state": "West Bengal",
+    "country": "India",
+    "population": 7103807,
+    "rural_population": 5700000,
+    "urban_population": 1403807,
+    "demographic_indicators": {
+      "literacy_rate": 66.59,
+      "sex_ratio_females_per_1000_males": 958,
+      "urbanization_pct": 19.76
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "463ff51e-6c1a-5e06-998b-df299a850be2",
+    "district_name": "Bhopal",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "population": 2371061,
+    "rural_population": 450000,
+    "urban_population": 1921061,
+    "demographic_indicators": {
+      "literacy_rate": 80.37,
+      "sex_ratio_females_per_1000_males": 918,
+      "urbanization_pct": 81.02
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "a4ba1310-cf08-5574-b1a9-c0cab13983ce",
+    "district_name": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "population": 3276697,
+    "rural_population": 850000,
+    "urban_population": 2426697,
+    "demographic_indicators": {
+      "literacy_rate": 80.87,
+      "sex_ratio_females_per_1000_males": 928,
+      "urbanization_pct": 74.06
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "88aec8e2-b114-5d9f-aa08-8ef5b6d8b1ca",
+    "district_name": "Jabalpur",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "population": 2463289,
+    "rural_population": 1020000,
+    "urban_population": 1443289,
+    "demographic_indicators": {
+      "literacy_rate": 81.07,
+      "sex_ratio_females_per_1000_males": 929,
+      "urbanization_pct": 58.59
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "74552a0e-b876-5e94-822d-76ee983a5cc6",
+    "district_name": "Balaghat",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "population": 1701698,
+    "rural_population": 1450000,
+    "urban_population": 251698,
+    "demographic_indicators": {
+      "literacy_rate": 77.09,
+      "sex_ratio_females_per_1000_males": 1021,
+      "urbanization_pct": 14.79
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "245ef165-c8b5-55f9-909e-bd33165f7fd8",
+    "district_name": "Khurda",
+    "state": "Odisha",
+    "country": "India",
+    "population": 2251673,
+    "rural_population": 1168000,
+    "urban_population": 1083673,
+    "demographic_indicators": {
+      "literacy_rate": 86.88,
+      "sex_ratio_females_per_1000_males": 925,
+      "urbanization_pct": 48.13
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "445a89ee-0587-599c-be67-ee35808b9ea1",
+    "district_name": "Cuttack",
+    "state": "Odisha",
+    "country": "India",
+    "population": 2624470,
+    "rural_population": 1890000,
+    "urban_population": 734470,
+    "demographic_indicators": {
+      "literacy_rate": 85.5,
+      "sex_ratio_females_per_1000_males": 955,
+      "urbanization_pct": 27.99
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "df84db23-62e2-5487-a0ff-488e809d5515",
+    "district_name": "Kalahandi",
+    "state": "Odisha",
+    "country": "India",
+    "population": 1576869,
+    "rural_population": 1455000,
+    "urban_population": 121869,
+    "demographic_indicators": {
+      "literacy_rate": 59.22,
+      "sex_ratio_females_per_1000_males": 1003,
+      "urbanization_pct": 7.73
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "42dfe9f2-d86c-5623-8f3e-4837a9a29775",
+    "district_name": "Kamrup Metropolitan",
+    "state": "Assam",
+    "country": "India",
+    "population": 1253938,
+    "rural_population": 218000,
+    "urban_population": 1035938,
+    "demographic_indicators": {
+      "literacy_rate": 88.71,
+      "sex_ratio_females_per_1000_males": 936,
+      "urbanization_pct": 82.61
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "09ad6ebf-3890-5e2f-b941-847d5abcb9e5",
+    "district_name": "Dibrugarh",
+    "state": "Assam",
+    "country": "India",
+    "population": 1326335,
+    "rural_population": 1080000,
+    "urban_population": 246335,
+    "demographic_indicators": {
+      "literacy_rate": 76.05,
+      "sex_ratio_females_per_1000_males": 961,
+      "urbanization_pct": 18.57
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  },
+  {
+    "district_id": "74cf48ce-68fd-56f1-a056-ce8f08e44c63",
+    "district_name": "Cachar",
+    "state": "Assam",
+    "country": "India",
+    "population": 1736617,
+    "rural_population": 1420000,
+    "urban_population": 316617,
+    "demographic_indicators": {
+      "literacy_rate": 79.34,
+      "sex_ratio_females_per_1000_males": 959,
+      "urbanization_pct": 18.23
+    },
+    "year": 2011,
+    "source": "Census of India 2011, Office of the Registrar General & Census Commissioner, India",
+    "data_type": "official"
+  }
+]

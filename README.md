@@ -102,3 +102,46 @@ pytest tests -v
 uvicorn app.main:app --reload --port 8000
 ```
 Health endpoint is accessible at `http://localhost:8000/health` and OpenAPI docs at `http://localhost:8000/docs`.
+
+---
+
+## Phase 2 — Dataset Pipeline
+
+### Ingestion & Processing Architecture
+Phase 2 establishes the end-to-end data pipeline in `data/`, normalizing public official datasets, spatial boundaries, and realistic synthetic demand data into canonical models:
+
+- **Canonical District Normalization**: Resolves spelling variations, legacy names, and aliases (e.g. Bangalore -> Bengaluru Urban, Poona -> Pune) to canonical district records with deterministic UUID5 identifiers.
+- **Geographic Validation (PostGIS / EPSG:4326)**: District polygons and centroids validated using Shapely; spatial bounds strictly enforced.
+- **Data Provenance & Registry**: Sourced datasets categorized into `official`, `public`, or `synthetic` in [`data/DATA_SOURCES.md`](file:///d:/College/Projects/GFD%20Challenge/data/DATA_SOURCES.md).
+
+### Datasets Summary
+
+| Dataset | Source | Records | Data Type | Target Table |
+|---|---|---|---|---|
+| **Districts GIS** | Survey of India / DataMeet | 44 districts | `public` | `districts` |
+| **Demographics** | Census of India 2011 (ORGI) | 44 records | `official` | `demographics` |
+| **Healthcare Infrastructure** | HMIS / MoHFW | 56 facilities | `official` | `infrastructure` |
+| **Health Indicators** | NFHS-5 Factsheets (IIPS / MoHFW) | 308 indicators | `official` | `health_indicators` |
+| **Investments** | Synthetic Simulation Model | 660 records | `synthetic` | `investments` |
+| **Citizen Demand Requests** | Synthetic Hotspot Engine | 8,000 requests | `synthetic` | `citizen_requests` |
+
+### Running the Dataset Pipeline
+```bash
+# 1. Regenerate all normalized datasets
+python data/scripts/prepare_districts_gis.py
+python data/scripts/prepare_demographics.py
+python data/scripts/prepare_infrastructure.py
+python data/scripts/prepare_health_indicators.py
+python data/scripts/prepare_investments.py
+python data/scripts/generate_citizen_requests.py
+
+# 2. Run data quality validation & profiling
+python data/scripts/profile_datasets.py
+
+# 3. Test ingestion dry-run
+python data/scripts/load_all_to_database.py --dry-run
+
+# 4. Ingest into live Supabase / PostgreSQL (requires DATABASE_URL in .env)
+python data/scripts/load_all_to_database.py
+```
+
