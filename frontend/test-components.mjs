@@ -27,6 +27,7 @@ const requiredFiles = [
   'src/components/LocationPicker.jsx',
   'src/components/SubmissionSuccess.jsx',
   'src/components/CitizenRequestHistory.jsx',
+  'src/components/AIAnalysisCard.jsx',
   'src/pages/CitizenPortal.jsx'
 ];
 

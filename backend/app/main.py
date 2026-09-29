@@ -2,11 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import health_router, requests_router
+from app.routers import health_router, requests_router, ai_router
 
 app = FastAPI(
     title="GFD Challenge - Digital Public Infrastructure API",
-    description="Backend API for Citizen Requests, Spatial Data, and Infrastructure Governance (Phase 1).",
+    description="Backend API for Citizen Requests, Spatial Data, and Infrastructure Governance.",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -24,6 +24,7 @@ app.add_middleware(
 # Register Routers
 app.include_router(health_router)
 app.include_router(requests_router)
+app.include_router(ai_router)
 
 
 @app.get("/", tags=["Root"])

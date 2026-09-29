@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { fetchCitizenRequests } from '../services/api';
+import AIAnalysisCard from './AIAnalysisCard';
 import { Image, Mic, MapPin, Calendar, Clock, RefreshCw, AlertCircle } from 'lucide-react';
 
 export default function CitizenRequestHistory({ onNewRequest }) {
@@ -148,6 +149,12 @@ export default function CitizenRequestHistory({ onNewRequest }) {
               )}
             </div>
           </div>
+
+          {/* Multimodal AI Intelligence */}
+          <AIAnalysisCard
+            requestId={req.id}
+            userId={user?.id}
+          />
         </div>
       ))}
     </div>

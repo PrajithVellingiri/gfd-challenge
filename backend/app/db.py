@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import Optional, Dict, Any, List
 import psycopg2
@@ -195,3 +196,107 @@ def list_citizen_requests(user_id: Optional[str] = None, limit: int = 50, offset
                 conn.close()
 
     return []
+
+
+def upsert_ai_analysis(analysis_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """
+    Inserts or updates an AI analysis record for a given request_id.
+    """
+    req_id = analysis_data.get("request_id")
+    if not req_id:
+        return None
+
+    # 1. Try Supabase Client
+    client = get_supabase_client()
+    if client:
+        try:
+            # Check if record already exists
+            existing = client.table("ai_analyses").select("id").eq("request_id", str(req_id)).limit(1).execute()
+            if existing.data and len(existing.data) > 0:
+                row_id = existing.data[0]["id"]
+                res = client.table("ai_analyses").update(analysis_data).eq("id", row_id).execute()
+                if res.data:
+                    return res.data[0]
+            else:
+                res = client.table("ai_analyses").insert(analysis_data).execute()
+                if res.data:
+                    return res.data[0]
+        except Exception as e:
+            logger.error(f"Error upserting AI analysis via Supabase: {type(e).__name__}")
+
+    # 2. Try direct PostgreSQL
+    if settings.DATABASE_URL:
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    # Check if exists
+                    cur.execute("SELECT id FROM public.ai_analyses WHERE request_id = %s LIMIT 1;", (str(req_id),))
+                    row = cur.fetchone()
+
+                    # Prepare columns and values
+                    cols = list(analysis_data.keys())
+                    vals = []
+                    for c in cols:
+                        v = analysis_data[c]
+                        if isinstance(v, (dict, list)):
+                            vals.append(json.dumps(v))
+                        else:
+                            vals.append(v)
+
+                    if row:
+                        # UPDATE
+                        set_clause = ", ".join(f'"{c}" = %s' for c in cols)
+                        vals.append(row["id"])
+                        query = f"UPDATE public.ai_analyses SET {set_clause}, updated_at = now() WHERE id = %s RETURNING *;"
+                        cur.execute(query, vals)
+                    else:
+                        # INSERT
+                        col_names = ", ".join(f'"{c}"' for c in cols)
+                        placeholders = ", ".join(["%s"] * len(vals))
+                        query = f"INSERT INTO public.ai_analyses ({col_names}) VALUES ({placeholders}) RETURNING *;"
+                        cur.execute(query, vals)
+
+                    updated = cur.fetchone()
+                    conn.commit()
+                    return dict(updated) if updated else None
+            except Exception as e:
+                logger.error(f"Error upserting AI analysis via PostgreSQL: {type(e).__name__}")
+            finally:
+                conn.close()
+
+    # Fallback in-memory return for testing without db
+    return analysis_data
+
+
+def fetch_ai_analysis(request_id: str) -> Optional[Dict[str, Any]]:
+    """
+    Fetches the AI analysis record for a given request_id.
+    """
+    client = get_supabase_client()
+    if client:
+        try:
+            res = client.table("ai_analyses").select("*").eq("request_id", str(request_id)).order("created_at", desc=True).limit(1).execute()
+            if res.data and len(res.data) > 0:
+                return res.data[0]
+        except Exception as e:
+            logger.error(f"Error fetching AI analysis via Supabase: {type(e).__name__}")
+
+    if settings.DATABASE_URL:
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        "SELECT * FROM public.ai_analyses WHERE request_id = %s ORDER BY created_at DESC LIMIT 1;",
+                        (str(request_id),)
+                    )
+                    row = cur.fetchone()
+                    return dict(row) if row else None
+            except Exception as e:
+                logger.error(f"Error fetching AI analysis via PostgreSQL: {type(e).__name__}")
+            finally:
+                conn.close()
+
+    return None
+

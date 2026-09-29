@@ -1,4 +1,5 @@
 import React from 'react';
+import AIAnalysisCard from './AIAnalysisCard';
 import { CheckCircle, PlusCircle, History, Copy, Check } from 'lucide-react';
 
 export default function SubmissionSuccess({ result, onReset, onViewHistory }) {
@@ -70,6 +71,13 @@ export default function SubmissionSuccess({ result, onReset, onViewHistory }) {
           {copied ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
           <span>{copied ? 'Copied' : 'Copy'}</span>
         </button>
+      </div>
+
+      <div style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
+        <AIAnalysisCard
+          requestId={result?.request_id}
+          userId={result?.user_id}
+        />
       </div>
 
       <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>

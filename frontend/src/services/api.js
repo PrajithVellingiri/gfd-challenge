@@ -83,3 +83,53 @@ export async function uploadAttachment(file, userId, requestId, bucketType) {
   }
   return data;
 }
+
+/**
+ * Triggers Multimodal AI Analysis for a citizen request.
+ */
+export async function triggerAIAnalysis(requestId, userId) {
+  const url = userId 
+    ? `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/analyze?user_id=${encodeURIComponent(userId)}`
+    : `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/analyze`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(userId ? { 'X-User-Id': userId } : {})
+    }
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to analyze request with AI');
+  }
+  return data;
+}
+
+/**
+ * Fetches existing Multimodal AI Analysis for a citizen request.
+ */
+export async function fetchAIAnalysis(requestId, userId) {
+  const url = userId 
+    ? `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/analysis?user_id=${encodeURIComponent(userId)}`
+    : `${API_BASE_URL}/api/requests/${encodeURIComponent(requestId)}/analysis`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      ...(userId ? { 'X-User-Id': userId } : {})
+    }
+  });
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.detail || 'Failed to fetch AI analysis');
+  }
+  return data;
+}
+

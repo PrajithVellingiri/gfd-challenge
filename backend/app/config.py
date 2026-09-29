@@ -40,6 +40,10 @@ class Settings(BaseSettings):
     STORAGE_IMAGE_BUCKET: str = Field(default="citizen-images", description="Storage bucket name for uploaded images")
     STORAGE_AUDIO_BUCKET: str = Field(default="citizen-audio", description="Storage bucket name for uploaded audio files")
 
+    # Google Gemini AI Configuration
+    GEMINI_API_KEY: Optional[str] = Field(default=None, description="Google Gemini API key for multimodal analysis")
+    GEMINI_MODEL: str = Field(default="gemini-1.5-flash", description="Gemini model identifier (e.g. gemini-1.5-flash or gemini-1.5-pro)")
+
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v):

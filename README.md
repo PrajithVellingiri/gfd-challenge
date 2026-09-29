@@ -171,4 +171,58 @@ python -m pytest -v
 cd frontend && npm test
 ```
 
+---
+
+## Phase 4 — Multimodal AI Intelligence
+
+### Multimodal Analysis Workflow
+Phase 4 integrates Google's Gemini models (`gemini-1.5-flash`) to transform raw citizen requests (text, voice audio, field photos) into structured, actionable governance intelligence:
+
+```
+Citizen Submission (Text, Voice WebM, Photo JPEG/PNG)
+                     │
+                     ▼
+          [Backend Request Analyzer]
+     (app/services/ai/request_analyzer.py)
+                     │
+     ┌───────────────┼───────────────┐
+     ▼               ▼               ▼
+Text Analysis  Audio Analyzer  Image Analyzer
+(Gemini Flash)  (Gemini Audio) (Gemini Vision)
+     │               │               │
+     └───────────────┼───────────────┘
+                     ▼
+         Output Validation & Clean
+        (app/services/ai/validators.py)
+                     │
+                     ▼
+        PostgreSQL / Supabase Storage
+        - public.ai_analyses (v1.0 schema)
+        - processing_status: completed / failed
+                     │
+                     ▼
+         Frontend AI Insight Drawer
+        (src/components/AIAnalysisCard.jsx)
+```
+
+- **Multilingual Understanding**: Translates Tamil, Hindi, and regional language complaints to clear English while preserving all specific nuances and local names.
+- **Canonical Categorization**: Strictly classifies grievances into 8 official DPI sectors (`Healthcare`, `Education`, `Roads`, `Water`, `Transportation`, `Electricity`, `Digital Infrastructure`, `Other`).
+- **Urgency & Sub-Category Assessment**: Categorizes urgency as `Low`, `Medium`, `High`, or `Critical`, and extracts specific sub-categories.
+- **Audio Transcription**: Automatically transcribes citizen voice recordings into faithful text.
+- **Computer Vision Inspection**: Identifies infrastructure types and extracts 1–5 objective visual observations with physical severity estimation.
+- **Summarization & Keywords**: Produces concise summaries (<=200 chars) and 3–10 keywords.
+- **Interactive UI Insights**: Integrates `AIAnalysisCard` directly in request history and post-submission screens with clear advisory notices.
+
+### Running Test Suites
+```bash
+# Backend test suite (Phase 1, 2, 3, and 4 — 60 tests)
+$env:PYTHONPATH=".;backend"; python -m pytest -v
+
+# Frontend component tests & production Vite build
+cd frontend
+npm test
+npm run build
+```
+
+
 
