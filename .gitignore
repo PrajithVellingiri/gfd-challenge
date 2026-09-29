@@ -30,6 +30,10 @@ out/
 *.swp
 *.swo
 
+# Test and coverage artifacts
+.pytest_cache/
+*.log
+
 # OS generated files
 .DS_Store
 Thumbs.db

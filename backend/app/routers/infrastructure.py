@@ -5,10 +5,11 @@ Provides decision-support signals connecting citizen demand with public infrastr
 
 from typing import List, Optional, Dict, Any
 from uuid import UUID
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, HTTPException, Query, Depends, status
 from pydantic import BaseModel, Field
 
 from app.services.infrastructure.infrastructure_service import default_infrastructure_service
+from app.services.auth_dependencies import verify_admin_authorization
 
 router = APIRouter(tags=["Infrastructure Intelligence"])
 
@@ -186,10 +187,13 @@ async def list_gap_signals(
     response_model=RefreshResponse,
     summary="Recompute all district intelligence and gap signals"
 )
-async def refresh_infrastructure_intelligence():
+async def refresh_infrastructure_intelligence(
+    authorized: bool = Depends(verify_admin_authorization)
+):
     """
     Triggers deterministic recalculation of all district intelligence,
     cross-district relative percentiles, and gap signals.
+    Requires administrator credentials in production.
     """
     res = default_infrastructure_service.refresh_all_intelligence()
     return RefreshResponse(**res)

@@ -6,11 +6,12 @@ emerging issue signals, and batch processing.
 
 from typing import List, Optional, Dict, Any
 from uuid import UUID
-from fastapi import APIRouter, HTTPException, Query, Header, status
+from fastapi import APIRouter, HTTPException, Query, Header, Depends, status
 from pydantic import BaseModel, Field
 
 from app.db import fetch_citizen_request, fetch_clusters
 from app.services.intelligence.intelligence_service import default_intelligence_service
+from app.services.auth_dependencies import verify_admin_authorization
 
 router = APIRouter(tags=["Request Intelligence"])
 
@@ -268,10 +269,12 @@ async def get_emerging_issues(
     summary="Batch process pending requests for embeddings, similarities, and clusters"
 )
 async def process_pending_intelligence_batch(
-    batch_size: int = Query(50, ge=1, le=500, description="Number of requests to process in batch")
+    batch_size: int = Query(50, ge=1, le=500, description="Number of requests to process in batch"),
+    authorized: bool = Depends(verify_admin_authorization)
 ):
     """
     Batch administrative job to embed, calculate similarities, and refresh clusters.
+    Requires administrator credentials in production.
     """
     res = default_intelligence_service.process_pending_intelligence(batch_size=batch_size)
     return BatchProcessResponse(**res)

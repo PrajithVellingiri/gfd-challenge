@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = Field(default="development", description="Current environment (development, test, production)")
     HOST: str = Field(default="0.0.0.0", description="Host address to bind the API server")
     PORT: int = Field(default=8000, description="Port for the API server")
+    ADMIN_API_KEY: Optional[str] = Field(default=None, description="Secret token to protect administrative endpoints")
     
     # CORS
     CORS_ORIGINS: List[str] = Field(
